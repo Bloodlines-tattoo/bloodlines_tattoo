@@ -1,0 +1,187 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0D0C0B;
+  --surface:#161412;
+  --card:#1E1B17;
+  --red:#8B1A1A;
+  --red-mid:#A52020;
+  --red-bright:#C0392B;
+  --bone:#E8E0D4;
+  --muted:#6B6560;
+  --border:#2A2520;
+  --border-mid:#3A322C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--bone);font-family:"Inter",sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+ 
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.8}}
+@keyframes igPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.4)}70%{box-shadow:0 0 0 12px rgba(192,57,43,0)}}
+ 
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+ 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(13,12,11,.96);backdrop-filter:blur(16px);border-color:var(--border)}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.nav-logo-img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(139,26,26,.55));mix-blend-mode:lighten}
+.nav-logo-text{font-family:"Playfair Display",serif;font-size:.95rem;font-weight:700;letter-spacing:.15em;color:var(--bone)}
+.nav-logo-text span{color:var(--red-bright)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--red-bright);transform:scaleX(0);transition:transform .25s}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{background:transparent;color:var(--bone);border:1px solid var(--red);padding:.5rem 1.3rem;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s;display:flex;align-items:center;gap:.5rem}
+.nav-cta:hover{background:var(--red);color:#fff}
+.nav-cta svg{width:14px;height:14px;fill:currentColor}
+ 
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;padding:8rem 2rem 6rem}
+.hero-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.ring{position:absolute;border-radius:50%;border:1px solid var(--border)}
+.ring-1{width:320px;height:320px;border-color:var(--border-mid);animation:rotateSlow 40s linear infinite}
+.ring-2{width:500px;height:500px;animation:rotateSlow 60s linear infinite reverse}
+.ring-3{width:700px;height:700px;animation:rotateSlow 90s linear infinite}
+.ring-dot{position:absolute;width:5px;height:5px;background:var(--red-mid);border-radius:50%;top:0;left:50%;transform:translateX(-50%)}
+.hero-logo-wrap{position:relative;width:180px;height:180px;margin:0 auto 2rem;animation:fadeIn 1s ease .2s both}
+.hero-logo-glow{position:absolute;inset:-24px;border-radius:50%;background:radial-gradient(circle,rgba(139,26,26,.45) 0%,transparent 70%);animation:pulse 3s ease-in-out infinite}
+.hero-logo-img{width:180px;height:180px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 4px 28px rgba(139,26,26,.7));mix-blend-mode:lighten}
+.hero-eyebrow{font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--red-bright);margin-bottom:1rem;animation:fadeUp .8s ease .4s both}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;font-weight:900;color:#fff;margin-bottom:1.25rem;animation:fadeUp .8s ease .55s both}
+.hero-title em{font-style:italic;color:var(--red-bright)}
+.hero-sub{max-width:500px;font-size:.95rem;color:var(--muted);line-height:1.85;margin:0 auto 2.5rem;animation:fadeUp .8s ease .7s both}
+.hero-actions{display:flex;align-items:center;gap:1.25rem;justify-content:center;animation:fadeUp .8s ease .85s both;flex-wrap:wrap}
+ 
+/* IG BUTTON */
+.btn-ig{display:inline-flex;align-items:center;gap:.65rem;background:linear-gradient(135deg,var(--red) 0%,var(--red-bright) 100%);color:#fff;padding:.85rem 2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,opacity .2s;animation:igPulse 2.5s ease-in-out infinite}
+.btn-ig:hover{transform:translateY(-2px);opacity:.9}
+.btn-ig svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+.btn-ghost{color:var(--bone);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;padding-bottom:2px;border-bottom:1px solid var(--border-mid);transition:border-color .2s,color .2s}
+.btn-ghost:hover{color:var(--red-bright);border-color:var(--red-mid)}
+ 
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeIn 1s ease 1.2s both}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--red-mid),transparent)}
+.scroll-label{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+ 
+/* SECTIONS */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2.5rem}
+.section-label{font-size:.67rem;letter-spacing:.35em;text-transform:uppercase;color:var(--red-bright);margin-bottom:.7rem}
+.section-title{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1.2rem}
+.divider-short{width:44px;height:1px;background:var(--red-bright);margin-bottom:2.5rem}
+ 
+/* ABOUT */
+.about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-logo-side{display:flex;flex-direction:column;align-items:center;gap:2rem}
+.about-logo-frame{position:relative;width:220px;height:220px}
+.about-logo-frame::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid var(--border-mid)}
+.about-logo-frame::after{content:"";position:absolute;inset:-28px;border-radius:50%;border:1px solid var(--border)}
+.about-logo-main{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 2px 20px rgba(139,26,26,.45));mix-blend-mode:lighten}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%}
+.stat{border:1px solid var(--border);padding:1.1rem 1rem;position:relative;overflow:hidden;transition:border-color .25s}
+.stat::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
+.stat:hover{border-color:var(--border-mid)}
+.stat-num{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:900;color:#fff}
+.stat-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:.92rem}
+ 
+/* STYLES */
+.styles-section{background:var(--black)}
+.styles-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);margin-top:3rem}
+.style-card{padding:2rem 1.6rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;transition:background .3s}
+.style-card::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red-bright);transition:width .35s ease}
+.style-card:hover{background:var(--card)}
+.style-card:hover::after{width:100%}
+.style-num{font-family:"Playfair Display",serif;font-size:2.3rem;font-weight:900;color:var(--border-mid);line-height:1;margin-bottom:.65rem;transition:color .3s}
+.style-card:hover .style-num{color:var(--red-mid)}
+.style-name{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.style-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
+ 
+/* GALLERY */
+.gallery-section{background:var(--surface);border-top:1px solid var(--border)}
+.gallery-header{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-bottom:2.5rem;gap:2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.g-item{background:var(--card);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:1/1}
+.g-item.featured{grid-column:span 1;grid-row:span 1;aspect-ratio:1/1}
+.g-item img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease;display:block}
+.g-item:hover img{transform:scale(1.04)}
+.g-placeholder{text-align:center;padding:1rem}
+.g-icon{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:900;color:var(--border-mid);display:block;margin-bottom:.4rem}
+.g-label{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--border-mid)}
+.g-overlay{position:absolute;inset:0;background:rgba(139,26,26,0);transition:background .3s;display:flex;align-items:flex-end;padding:1.25rem}
+.g-overlay-text{color:#fff;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;opacity:0;transition:opacity .3s;font-family:"Playfair Display",serif;font-style:italic}
+.g-item:hover .g-overlay{background:rgba(13,12,11,.45)}
+.g-item:hover .g-overlay-text{opacity:1}
+ 
+/* BOOKING CTA */
+.booking-section{background:var(--black);border-top:1px solid var(--border)}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.booking-info p{color:var(--muted);line-height:1.9;font-size:.92rem;margin-bottom:1.5rem}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--border)}
+.contact-icon{width:30px;text-align:center;font-size:.95rem;color:var(--red-bright);flex-shrink:0}
+.contact-label{font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.contact-value{font-size:.88rem;color:var(--bone)}
+ 
+/* IG BOOKING BOX */
+.ig-box{border:1px solid var(--border-mid);padding:2.5rem;text-align:center;background:var(--card);position:relative;overflow:hidden}
+.ig-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.ig-box-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--red) 0%,var(--red-bright) 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.ig-box-icon svg{width:32px;height:32px;fill:#fff}
+.ig-box h3{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+.ig-box p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.75rem;max-width:300px;margin-left:auto;margin-right:auto}
+.ig-box .btn-ig{width:100%;justify-content:center;font-size:.82rem;padding:.95rem 1.5rem;border-radius:0}
+.ig-handle{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted);margin-top:1rem;letter-spacing:.1em}
+.ig-handle span{color:var(--red-bright)}
+.ig-steps{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.75rem;text-align:left}
+.ig-step{display:flex;align-items:flex-start;gap:.75rem;font-size:.82rem;color:var(--muted);line-height:1.5}
+.ig-step-num{width:20px;height:20px;background:var(--red);color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+ 
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border)}
+.footer-top{padding:2.5rem 0 2rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;border-bottom:1px solid var(--border)}
+.footer-logo-wrap{display:flex;align-items:center;gap:.65rem}
+.footer-logo-img{width:32px;height:32px;object-fit:contain;opacity:.85;mix-blend-mode:lighten}
+.footer-logo-text{font-family:"Playfair Display",serif;font-size:.9rem;font-weight:700;letter-spacing:.15em;color:var(--bone)}
+.footer-logo-text span{color:var(--red-bright)}
+.footer-links{display:flex;gap:1.75rem;list-style:none;justify-content:center}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.footer-links a:hover{color:var(--bone)}
+.footer-social{display:flex;gap:.75rem;justify-content:flex-end;align-items:center}
+.social-btn{width:34px;height:34px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:.72rem;transition:border-color .2s,color .2s;font-weight:500}
+.social-btn:hover{border-color:var(--red-mid);color:var(--red-bright)}
+.footer-bottom{padding:1.4rem 0;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:.7rem;color:var(--muted)}
+.footer-tagline{font-size:.7rem;color:var(--muted);font-style:italic;font-family:"Playfair Display",serif}
+ 
+/* FLOATING IG BUTTON */
+.float-ig{position:fixed;bottom:1.75rem;right:1.75rem;z-index:99;display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,var(--red),var(--red-bright));color:#fff;padding:.7rem 1.2rem;text-decoration:none;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 4px 24px rgba(139,26,26,.5);transition:transform .2s,box-shadow .2s;animation:igPulse 3s ease-in-out infinite}
+.float-ig:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(139,26,26,.6)}
+.float-ig svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+ 
+@media(max-width:900px){
+  .about-grid,.booking-grid,.gallery-header{grid-template-columns:1fr;gap:2.5rem}
+  .styles-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .g-item.featured{grid-column:span 1;aspect-ratio:1/1}
+  .footer-top{grid-template-columns:1fr;text-align:center}
+  .footer-social{justify-content:center}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  nav{padding:1rem 1.25rem}
+  .hero{padding:7rem 1.25rem 5rem}
+  .container{padding:0 1.25rem}
+  .styles-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .float-ig{bottom:1rem;right:1rem;padding:.6rem 1rem;font-size:.68rem}
+}
+ 
+/* ─── Utility ─────────────────────────────────── */
+.about-p{color:var(--muted);line-height:1.9;font-size:.92rem;margin-bottom:1rem}
+.gallery-note{color:var(--muted);font-size:.87rem;line-height:1.8}
+ 
